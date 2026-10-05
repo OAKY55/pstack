@@ -24,12 +24,31 @@ If a platform cannot fully obey a rule because of higher-priority system, safety
 
 If the original file cannot be accessed, the AI must say that Pstack canonical rules were not fully loaded. It must not claim full Pstack compliance from a partial, summarized, cached, or remixed copy.
 
+## Version and checksum integrity
+
+The current canonical version is stored in `PSTACK_VERSION`.
+
+The canonical checksum metadata is stored in `PSTACK_MANIFEST.json`.
+
+Before claiming full Pstack compliance, verify that:
+
+- `PSTACK_VERSION` was read;
+- `PSTACK_MANIFEST.json` was read;
+- `PSTACK_GLOBAL.md` was read directly;
+- the Git blob SHA-1 of `PSTACK_GLOBAL.md` matches `canonical_git_blob_sha1` in `PSTACK_MANIFEST.json`.
+
+If checksum verification cannot be performed, report `PSTACK STATUS: PARTIAL`.
+
+If the checksum fails, or only a remix/summary was loaded, report `PSTACK STATUS: FAIL`.
+
 ## Integrity self-check
 
 Before claiming "Pstack loaded", "Pstack active", "Pstack compliant", or an equivalent status, verify all of the following:
 
 - `PSTACK_GLOBAL.md` was actually read in the current session or runtime;
 - the current content was used, not only a summary or generated remix;
+- `PSTACK_VERSION` and `PSTACK_MANIFEST.json` were actually read;
+- the canonical checksum was verified and matched;
 - no adapter replaced the canonical rules;
 - any unavailable nested skill is explicitly reported as unavailable;
 - no tool, test, search, file read, deployment, or verification is claimed without direct evidence.
