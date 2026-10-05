@@ -2,7 +2,7 @@
   "name": "pstack-universal",
   "version": "2026-10-05.1",
   "canonical_file": "PSTACK_GLOBAL.md",
-  "canonical_git_blob_sha1": "64a27474ba7b44fcfbc310f4d40b9ba506032076",
+  "canonical_git_blob_sha1": "e04ce34d21bc4ceda44745685746400908d08eb1",
   "root_skill": "SKILL.md",
   "source_of_truth": "https://github.com/OAKY55/pstack",
   "verification_rule": "PASS is allowed only when PSTACK_GLOBAL.md was read directly and its Git blob SHA-1 matches canonical_git_blob_sha1. Otherwise report PARTIAL or FAIL."
