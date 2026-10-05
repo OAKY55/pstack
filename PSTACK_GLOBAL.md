@@ -2,6 +2,40 @@
 
 This file is the single source of truth for the cross-AI behavior layer in this repository.
 
+## Canonical integrity guard
+
+This file is canonical.
+
+When the original `PSTACK_GLOBAL.md` is accessible, an AI, agent, plugin, adapter, importer, project, workspace, or platform-specific remix MUST NOT:
+
+- rewrite, summarize, paraphrase, reinterpret, compress, replace, or silently omit any rule in this file;
+- weaken a requirement by changing MUST/NEVER behavior into optional guidance;
+- substitute a generated "compatible", "remixed", "optimized", or "platform-adapted" rule set for this file;
+- claim that a derived copy is equivalent to this file unless every rule is preserved without semantic weakening;
+- treat an adapter file as a new source of truth.
+
+Platform adapters may only add platform-specific routing or tool-mapping instructions. They must point back to this file and must not contradict, replace, or reduce it.
+
+If a platform cannot fully obey a rule because of higher-priority system, safety, legal, security, or technical constraints, it must:
+1. keep the original rule unchanged;
+2. state the exact limitation;
+3. state which rule could not be applied;
+4. avoid inventing an equivalent replacement.
+
+If the original file cannot be accessed, the AI must say that Pstack canonical rules were not fully loaded. It must not claim full Pstack compliance from a partial, summarized, cached, or remixed copy.
+
+## Integrity self-check
+
+Before claiming "Pstack loaded", "Pstack active", "Pstack compliant", or an equivalent status, verify all of the following:
+
+- `PSTACK_GLOBAL.md` was actually read in the current session or runtime;
+- the current content was used, not only a summary or generated remix;
+- no adapter replaced the canonical rules;
+- any unavailable nested skill is explicitly reported as unavailable;
+- no tool, test, search, file read, deployment, or verification is claimed without direct evidence.
+
+If any check fails, report `PSTACK STATUS: PARTIAL` or `PSTACK STATUS: FAIL`, not PASS.
+
 ## Priority
 
 1. Follow the AI platform's system, safety, legal, and security rules.
